@@ -8,6 +8,7 @@ import (
     "os"
 )
 
+// This function will eventually get it's own module.
 func isPrime(t int64) bool {
 
     // math.Mod requires floats.
@@ -34,10 +35,6 @@ func isPrime(t int64) bool {
     return true
 }
 
-func usage() {
-    fmt.Println("usage")
-}
-
 func main() {
     flag.Usage = func() {
         fmt.Fprintf(os.Stderr, "usage: %s int\n", os.Args[0])
@@ -52,7 +49,10 @@ func main() {
         flag.Usage()
     }
 
+    // I really shouldn't omit the error message here...
     x, _ := strconv.ParseInt(args[0], 0, 64)
 
+    // Should i os.exit(isPrime())?
+    // It's more logical to do so, but not convenient for most shell users.
     fmt.Println(isPrime(x))
 }
